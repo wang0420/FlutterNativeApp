@@ -45,8 +45,9 @@
         <!-- 在所在的activity中加入 -->
 
 
-        <!--        <meta-data android:name="flutterEmbedding" android:value="2"/>-->
-
+        <meta-data
+            android:name="flutterEmbedding"
+            android:value="2" />
 
 
         <activity

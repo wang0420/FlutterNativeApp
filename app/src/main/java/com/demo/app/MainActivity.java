@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                         FlutterActivity
                                 .withNewEngine()
                                 .initialRoute("/MyHomePage")
-                                .build(MainActivity.this));*/
+                                .build(MainActivity.this));
                 //使用缓存的缓存的FlutterEngine：
                /* Intent intent = FlutterActivity
                         .withCachedEngine("my_engine_id")
