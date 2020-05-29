@@ -20,21 +20,34 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".FlutterSampleActivity" />
+        <!-- <activity android:name=".FlutterSampleActivity" />-->
         <activity android:name=".NativeActivity" />
 
         <activity android:name=".FlutterPluginJumpToNativeActivity">
-            <intent-filter>
-                <data
-                    android:host="flutter_native"
-                    android:scheme="app" />
-                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
+        </activity>
+
+
+        <activity
+            android:name="io.flutter.embedding.android.FlutterActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale"
+            android:hardwareAccelerated="true"
+            android:windowSoftInputMode="adjustResize">
+            <meta-data
+                android:name="io.flutter.app.android.SplashScreenUntilFirstFrame"
+                android:value="true" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
+        <!-- 在所在的activity中加入 -->
+
+
+        <meta-data android:name="flutterEmbedding" android:value="2"/>
+
+        <activity android:name=".MyFlutterActivity"/>
     </application>
 
 </manifest>

@@ -8,11 +8,12 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import io.flutter.embedding.android.FlutterActivity;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView textView;
-    private LinearLayout one, two, three, four;
+    private LinearLayout one, two, three;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -23,12 +24,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     private void findView() {
         one = findViewById(R.id.one);
         two = findViewById(R.id.two);
         three = findViewById(R.id.three);
-        four = findViewById(R.id.four);
+
         textView = findViewById(R.id.params);
     }
 
@@ -36,7 +36,29 @@ public class MainActivity extends AppCompatActivity {
         one.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, FlutterSampleActivity.class));
+                //启动main 默认路由 /
+                // startActivity(FlutterActivity.createDefaultIntent(MainActivity.this));
+                //指定路由
+                startActivity(
+                        FlutterActivity
+                                .withNewEngine()
+                                .initialRoute("/MyHomePage")
+                                .build(MainActivity.this));
+                //使用缓存的缓存的FlutterEngine：
+               /* Intent intent = FlutterActivity
+                        .withCachedEngine("my_engine_id")
+                        .build(MainActivity.this);
+                //主要加入这句话  全屏  .backgroundMode(FlutterActivity.BackgroundMode.transparent)//设置backgroundMode
+                intent.putExtra("background_mode", "transparent");
+                startActivity(intent);*/
+
+                Intent intent = MyFlutterActivity
+                        .withNewEngine(MyFlutterActivity.class)
+                        .initialRoute("/MyHomePage")
+                        .build(MainActivity.this);
+                startActivity(intent);
+
+
             }
         });
 

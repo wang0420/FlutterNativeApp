@@ -11,4 +11,6 @@
         <!--startActivity  加载 初始化的时间 会有短时间黑屏解决办法-->
         <item name="android:windowIsTranslucent">false</item>
     </style>
+
+
 </resources>
