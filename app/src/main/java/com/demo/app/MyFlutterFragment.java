@@ -1,10 +1,15 @@
 package com.demo.app;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.widget.Toast;
 
+import io.flutter.embedding.android.DrawableSplashScreen;
 import io.flutter.embedding.android.FlutterActivity;
+import io.flutter.embedding.android.FlutterFragment;
+import io.flutter.embedding.android.SplashScreen;
 import io.flutter.embedding.engine.FlutterEngine;
 import io.flutter.plugin.common.BasicMessageChannel;
 import io.flutter.plugin.common.StringCodec;
@@ -16,20 +21,24 @@ import io.flutter.plugins.GeneratedPluginRegistrant;
  * @author wangwei
  * @date 2020/5/29.
  */
-public class MyFlutterActivity extends FlutterActivity {
+public class MyFlutterFragment extends FlutterFragment {
 
-
+    /*FlutterFragment显示过渡图片,和FlutterActivity一样，FlutterFragment在加载flutter时也支持增加过渡图片显示*/
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Log.w("TAG", "MyFlutterActivity");
+    public SplashScreen provideSplashScreen() {
+        // Load the splash Drawable.
+        Drawable splash = BaseApplication.getInstance().getResources().getDrawable(R.mipmap.pic1);
 
-
+        // Construct a DrawableSplashScreen with the loaded splash Drawable and
+        // return it.
+        return new DrawableSplashScreen(splash);
     }
+
 
     @Override
     public void configureFlutterEngine(FlutterEngine flutterEngine) {
         super.configureFlutterEngine(flutterEngine);
+        Log.w("TAG","----MyFlutterFragment->");
         GeneratedPluginRegistrant.registerWith(flutterEngine);
         AppGeneratedPluginRegistrant.registerWith(flutterEngine);
         FlutterEventChannel.create(flutterEngine);
@@ -68,16 +77,4 @@ public class MyFlutterActivity extends FlutterActivity {
     }
 
 
-    public static NewMyEngineIntentBuilder withNewEngine(Class<? extends FlutterActivity> activityClass) {
-        return new NewMyEngineIntentBuilder(activityClass);
-    }
-
-
-    //重写创建引擎方法
-    public static class NewMyEngineIntentBuilder extends NewEngineIntentBuilder {
-
-        protected NewMyEngineIntentBuilder(Class<? extends FlutterActivity> activityClass) {
-            super(activityClass);
-        }
-    }
 }

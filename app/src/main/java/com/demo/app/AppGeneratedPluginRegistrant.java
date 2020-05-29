@@ -6,7 +6,7 @@ import io.flutter.embedding.engine.FlutterEngine;
 import io.flutter.embedding.engine.plugins.shim.ShimPluginRegistry;
 
 /**
- * 请添加注释说明
+ * 插件注册
  *
  * @author wangwei
  * @date 2020/5/29.

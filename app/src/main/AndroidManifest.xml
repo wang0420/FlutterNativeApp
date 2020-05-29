@@ -45,9 +45,24 @@
         <!-- 在所在的activity中加入 -->
 
 
-        <meta-data android:name="flutterEmbedding" android:value="2"/>
+        <!--        <meta-data android:name="flutterEmbedding" android:value="2"/>-->
 
-        <activity android:name=".MyFlutterActivity"/>
+
+
+        <activity
+            android:name=".MyFlutterActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density"
+            android:hardwareAccelerated="true"
+            android:theme="@style/Theme.AppCompat"
+            android:windowSoftInputMode="adjustResize">
+            <!--启动默认图片-->
+            <meta-data
+                android:name="io.flutter.embedding.android.SplashScreenDrawable"
+                android:resource="@mipmap/pic1" />
+
+        </activity>
+
+
     </application>
 
 </manifest>

@@ -8,7 +8,9 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import io.flutter.embedding.android.FlutterActivity;
+import androidx.fragment.app.FragmentTransaction;
+import io.flutter.embedding.android.FlutterFragment;
+import io.flutter.embedding.android.FlutterView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,6 +32,24 @@ public class MainActivity extends AppCompatActivity {
         three = findViewById(R.id.three);
 
         textView = findViewById(R.id.params);
+
+
+        FlutterFragment.NewEngineFragmentBuilder newEngineFragmentBuilder = new FlutterFragment.NewEngineFragmentBuilder(MyFlutterFragment.class);
+        newEngineFragmentBuilder.initialRoute("/MyHomePage");
+        newEngineFragmentBuilder.renderMode(FlutterView.RenderMode.texture);
+        MyFlutterFragment myFlutterFragment = newEngineFragmentBuilder.build();
+
+
+        MyFlutterFragment myFlutterFragment2 = FlutterFragment.withNewEngine()
+                .initialRoute("/MyHomePage")
+                .build();
+
+
+        FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
+        tx.replace(R.id.rl_flutter, myFlutterFragment);
+        tx.commit();
+
+
     }
 
     private void setListener() {
@@ -39,11 +59,11 @@ public class MainActivity extends AppCompatActivity {
                 //启动main 默认路由 /
                 // startActivity(FlutterActivity.createDefaultIntent(MainActivity.this));
                 //指定路由
-                startActivity(
+       /*         startActivity(
                         FlutterActivity
                                 .withNewEngine()
                                 .initialRoute("/MyHomePage")
-                                .build(MainActivity.this));
+                                .build(MainActivity.this));*/
                 //使用缓存的缓存的FlutterEngine：
                /* Intent intent = FlutterActivity
                         .withCachedEngine("my_engine_id")
