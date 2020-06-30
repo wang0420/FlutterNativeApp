@@ -60,47 +60,14 @@
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:id="@+id/three"
-            android:visibility="gone"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="5dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="180dp"
-                android:scaleType="centerCrop"
-                android:src="@mipmap/pic3" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="pic3" />
-        </LinearLayout>
-
-
-    </LinearLayout>
 
     <TextView
-        android:id="@+id/params"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
         android:gravity="center"
-        android:text="我是原生组件" />
+        android:text="-----下面容器承载flutter页面-------" />
 
     <FrameLayout
         android:id="@+id/rl_flutter"

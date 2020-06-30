@@ -14,8 +14,7 @@ import io.flutter.embedding.android.FlutterView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView textView;
-    private LinearLayout one, two, three;
+    private LinearLayout one, two;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,10 +28,6 @@ public class MainActivity extends AppCompatActivity {
     private void findView() {
         one = findViewById(R.id.one);
         two = findViewById(R.id.two);
-        three = findViewById(R.id.three);
-
-        textView = findViewById(R.id.params);
-
 
         FlutterFragment.NewEngineFragmentBuilder newEngineFragmentBuilder = new FlutterFragment.NewEngineFragmentBuilder(MyFlutterFragment.class);
         newEngineFragmentBuilder.initialRoute("/MyHomePage");
@@ -86,14 +81,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, NativeActivity.class));
-            }
-        });
-
-        three.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
             }
         });
     }

@@ -41,6 +41,6 @@ dependencies {
     api 'org.ligboy.retrofit2:converter-fastjson-android:2.1.0'
     //转换器，请求结果转换成Model
     api 'com.squareup.retrofit2:adapter-rxjava2:2.6.0'
-    implementation project(':f_plugin')
+
 
 }
