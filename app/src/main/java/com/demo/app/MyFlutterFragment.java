@@ -1,12 +1,11 @@
 package com.demo.app;
 
-import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.util.Log;
 
-import io.flutter.embedding.android.DrawableSplashScreen;
+import com.demo.app.channel.FlutterEventChannel;
+
 import io.flutter.embedding.android.FlutterFragment;
-import io.flutter.embedding.android.SplashScreen;
 import io.flutter.embedding.engine.FlutterEngine;
 import io.flutter.plugin.common.BasicMessageChannel;
 import io.flutter.plugin.common.StringCodec;
@@ -21,7 +20,7 @@ import io.flutter.plugins.GeneratedPluginRegistrant;
 public class MyFlutterFragment extends FlutterFragment {
 
     /*FlutterFragment显示过渡图片,和FlutterActivity一样，FlutterFragment在加载flutter时也支持增加过渡图片显示*/
-    @Override
+   /* @Override
     public SplashScreen provideSplashScreen() {
         // Load the splash Drawable.
         Drawable splash = BaseApplication.getInstance().getResources().getDrawable(R.mipmap.pic1);
@@ -29,7 +28,7 @@ public class MyFlutterFragment extends FlutterFragment {
         // Construct a DrawableSplashScreen with the loaded splash Drawable and
         // return it.
         return new DrawableSplashScreen(splash);
-    }
+    }*/
 
 
     @Override

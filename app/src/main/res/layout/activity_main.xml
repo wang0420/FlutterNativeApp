@@ -6,60 +6,18 @@
 
     <include layout="@layout/layout_title_bar" />
 
-    <LinearLayout
+    <Button
+        android:id="@+id/one"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:baselineAligned="false"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:id="@+id/one"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="5dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="180dp"
-                android:scaleType="centerCrop"
-                android:src="@mipmap/pic1" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="携带参数跳转Flutter 界面" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/two"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="180dp"
-                android:scaleType="centerCrop"
-                android:src="@mipmap/pic2" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Native界面" />
-        </LinearLayout>
-    </LinearLayout>
-
+        android:layout_marginTop="5dp"
+        android:text="跳转Flutter主界面" />
+    <Button
+        android:id="@+id/two"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Platform Channel" />
 
     <TextView
         android:layout_width="match_parent"
@@ -67,7 +25,7 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
         android:gravity="center"
-        android:text="-----下面容器承载flutter页面-------" />
+        android:text="---------------容器承载flutter页面---------------------" />
 
     <FrameLayout
         android:id="@+id/rl_flutter"

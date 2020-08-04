@@ -1,11 +1,6 @@
-package com.demo.app;
+package com.demo.app.channel;
 
 import android.annotation.SuppressLint;
-import android.content.ContextWrapper;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.os.BatteryManager;
-import android.os.Build;
 import android.util.Log;
 
 import java.util.concurrent.TimeUnit;
@@ -15,9 +10,6 @@ import io.flutter.plugin.common.EventChannel;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
-
-import static android.content.Context.BATTERY_SERVICE;
-import static androidx.core.content.ContextCompat.getSystemService;
 
 /**
  * 请添加注释说明

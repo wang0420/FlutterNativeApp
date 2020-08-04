@@ -1,5 +1,7 @@
 package com.demo.app;
 
+import com.demo.app.channel.FlutterBasePlugin;
+
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 import io.flutter.embedding.engine.FlutterEngine;
@@ -16,7 +18,7 @@ import io.flutter.plugin.common.PluginRegistry;
 public final class AppGeneratedPluginRegistrant {
     public static void registerWith(@NonNull FlutterEngine flutterEngine) {
         ShimPluginRegistry shimPluginRegistry = new ShimPluginRegistry(flutterEngine);
-        com.demo.app.FlutterBasePlugin.registerWith(shimPluginRegistry.registrarFor("com.demo.app.FlutterBasePlugin"));
+        FlutterBasePlugin.registerWith(shimPluginRegistry.registrarFor("com.demo.app.channel.FlutterBasePlugin"));
 
         PluginRegistry.Registrar registrar = shimPluginRegistry.registrarFor(SimpleView.class.getCanonicalName());
         SampleViewFactory playerViewFactory = new SampleViewFactory(registrar.messenger());

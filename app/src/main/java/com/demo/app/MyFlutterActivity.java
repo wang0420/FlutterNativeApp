@@ -3,6 +3,9 @@ package com.demo.app;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.widget.Toast;
+
+import com.demo.app.channel.FlutterEventChannel;
 
 import io.flutter.embedding.android.FlutterActivity;
 import io.flutter.embedding.engine.FlutterEngine;
@@ -30,23 +33,25 @@ public class MyFlutterActivity extends FlutterActivity {
     @Override
     public void configureFlutterEngine(FlutterEngine flutterEngine) {
         super.configureFlutterEngine(flutterEngine);
-
         Log.w("TAG", "-flutterEngine-->" + flutterEngine.hashCode());
         GeneratedPluginRegistrant.registerWith(flutterEngine);
         AppGeneratedPluginRegistrant.registerWith(flutterEngine);
         FlutterEventChannel.create(flutterEngine);
+        testBasicMessageChannel(flutterEngine);
+    }
+
+
+    //--BasicMessageChannel 主要是传递字符串json等数据和一些半结构体的数据，需要指定编码方式--
+    private void testBasicMessageChannel(FlutterEngine flutterEngine) {
         //BasicMessageChannel
         // 消息接收监听BasicMessageChannel（主要是传递字符串和一些半结构体的数据）
-        //创建通
-        BasicMessageChannel<String> mMessageChannel = new BasicMessageChannel<String>(flutterEngine.getDartExecutor().getBinaryMessenger(), "flutter_and_native_100", StringCodec.INSTANCE);
+        //创建通道
+        BasicMessageChannel<String> mMessageChannel = new BasicMessageChannel<String>(flutterEngine.getDartExecutor().getBinaryMessenger(), "BasicMessageChannelTest", StringCodec.INSTANCE);
         // 接收消息监听
-        mMessageChannel.setMessageHandler(new BasicMessageChannel.MessageHandler<String>() {
-            @Override
-            public void onMessage(String s, BasicMessageChannel.Reply<String> reply) {
-                Log.w("---->", "Android接受到flutter发送的信息 =" + s);
-                reply.reply("Reply from Android");
+        mMessageChannel.setMessageHandler((s, reply) -> {
+            Toast.makeText(MyFlutterActivity.this, s, Toast.LENGTH_LONG).show();
+            reply.reply("Native接受到flutter发送的信息并回复给他一个s");
 
-            }
         });
 
 
@@ -58,17 +63,15 @@ public class MyFlutterActivity extends FlutterActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                mMessageChannel.send("我是原生延迟3秒发送过来的信息", new BasicMessageChannel.Reply<String>() {
+                mMessageChannel.send("原生延迟3秒BasicMessageChannel发送的信息", new BasicMessageChannel.Reply<String>() {
                     @Override
                     public void reply(String s) {
-                        Log.w("---->", "flutter 收到Android主动发送的信息并回复给你一个A =" + s);
-
+                        Toast.makeText(MyFlutterActivity.this, s, Toast.LENGTH_LONG).show();
                     }
                 });
             }
-        }, 3000);
+        }, 5000);
     }
-
 
     public static NewMyEngineIntentBuilder withNewEngine(Class<? extends FlutterActivity> activityClass) {
         return new NewMyEngineIntentBuilder(activityClass);

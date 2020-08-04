@@ -3,8 +3,7 @@ package com.demo.app;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,40 +13,30 @@ import io.flutter.embedding.android.FlutterView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private LinearLayout one, two;
+    private Button one, two;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        findView();
+        one = findViewById(R.id.one);
+        two = findViewById(R.id.two);
         setListener();
     }
 
 
-    private void findView() {
-        one = findViewById(R.id.one);
-        two = findViewById(R.id.two);
-
-        FlutterFragment.NewEngineFragmentBuilder newEngineFragmentBuilder = new FlutterFragment.NewEngineFragmentBuilder(MyFlutterFragment.class);
-        newEngineFragmentBuilder.initialRoute("/MyHomePage");
-        newEngineFragmentBuilder.renderMode(FlutterView.RenderMode.texture);
-        MyFlutterFragment myFlutterFragment = newEngineFragmentBuilder.build();
-
-
-        MyFlutterFragment myFlutterFragment2 = FlutterFragment.withNewEngine()
-                .initialRoute("/MyHomePage")
-                .build();
-
-
-        FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
-        tx.replace(R.id.rl_flutter, myFlutterFragment);
-        tx.commit();
-
-
-    }
-
     private void setListener() {
+        two.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = MyFlutterActivity
+                        .withNewEngine(MyFlutterActivity.class)
+                        .initialRoute("/ChannelPage")
+                        .build(MainActivity.this);
+                startActivity(intent);
+            }
+        });
+
         one.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,11 +66,25 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        two.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, NativeActivity.class));
-            }
-        });
     }
+
+
+    private void addToFragment() {
+        //fragment 加载
+        FlutterFragment.NewEngineFragmentBuilder newEngineFragmentBuilder = new FlutterFragment.NewEngineFragmentBuilder(MyFlutterFragment.class);
+        newEngineFragmentBuilder.initialRoute("/MyHomePage");
+        newEngineFragmentBuilder.renderMode(FlutterView.RenderMode.texture);
+        MyFlutterFragment myFlutterFragment = newEngineFragmentBuilder.build();
+
+
+        MyFlutterFragment myFlutterFragment2 = FlutterFragment.withNewEngine()
+                .initialRoute("/MyHomePage")
+                .build();
+
+
+        FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
+        tx.replace(R.id.rl_flutter, myFlutterFragment);
+        tx.commit();
+    }
+
 }
